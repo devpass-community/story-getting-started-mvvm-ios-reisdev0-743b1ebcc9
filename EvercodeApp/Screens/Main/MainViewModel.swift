@@ -17,7 +17,10 @@ class MainViewModel {
     }
     
     func fetchItems() {
-        
-        // TODO
+        self.service.fetchData { [weak self] items in
+            guard let self, let items else { return }
+            
+            self.delegate?.didFetchItems(items: items)
+        }
     }
 }
